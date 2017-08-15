@@ -1,0 +1,25 @@
+.menu {
+    float: right;
+}
+
+.menu__item {
+    float: left;
+    margin: 5px;
+    text-decoration: underline;
+    list-style:none;
+    cursor: pointer;
+}
+
+.menu__item:hover {
+    background-color: red;
+    color: #eee;
+}
+
+.menu__itemLink {
+    color: rgba(0,0,0,.7);
+}
+.menu__itemLink:hover {
+    background-color: red;
+    color: #eee;
+}
+
