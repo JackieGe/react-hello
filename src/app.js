@@ -8,7 +8,13 @@ ReactDOM.render(
     document.getElementById('container')
 )
 
+let people = [
+    {name: 'Jackie', title: 'Developer'},
+    {name: 'Lucy', title: 'BA'},
+    {name: 'Tom', title: 'Product Manager'},
+]
+
 ReactDOM.render(
-    <NameList/>,
+    <NameList people={people}/>,
     document.getElementById('nameList')
 )

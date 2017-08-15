@@ -52,5 +52,6 @@ module.exports = {
     ],
     devServer: {
         inline: true
-    }
+    },
+    devtool: "eval-source-map"
 }
