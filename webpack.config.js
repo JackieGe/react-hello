@@ -1,19 +1,19 @@
 let path = require('path');
 let webpack = require('webpack');
-let ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        'app': './src/app.js',
-        'vendor': ['react','react-dom']
+        app: './src/app.js',
+        vendor: ['react', 'react-dom']
     },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'js/[name].bundle.js'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
@@ -28,7 +28,7 @@ module.exports = {
             },
             {
                 test:/\.css/,
-                loader: ExtractTextWebpackPlugin.extract({
+                loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: 'css-loader'
                 })
@@ -37,11 +37,11 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name:'vendor',
+            name: 'vendor',
             filename: 'js/[name].bundle.js',
             minChunks: Infinity
         }),
-        new ExtractTextWebpackPlugin('css/[name].css'),
+        new ExtractTextPlugin('css/[name].css'),
         new HtmlWebpackPlugin({
             template:path.join(__dirname, 'src/index.html'),
             filename:'index.html',
