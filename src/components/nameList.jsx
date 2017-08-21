@@ -8,19 +8,18 @@ let NameList = React.createClass({
 
 
     handleClick: function (evt) {
-        console.log(evt);
         var row;
         if (evt.target instanceof HTMLTableCellElement) {
-          row = evt.target.parentElement;
+            row = evt.target.parentElement;
         } else if (evt.target instanceof HTMLTableRowElement) {
             row = evt.target;
         }
 
         if (row) {
-            if (!row.classList.contains('nameList__tr--active')) {
-                row.classList.add('nameList__tr--active');
-            }else {
-                row.classList.remove('nameList__tr--active')
+            if (!row.classList.contains('nameList__row--active')) {
+                row.classList.add('nameList__row--active');
+            } else {
+                row.classList.remove('nameList__row--active')
             }
         }
     },
@@ -31,20 +30,28 @@ let NameList = React.createClass({
                 <colgroup>
                     <col width={100}/>
                     <col width={140}/>
+                    <col width={140}/>
                 </colgroup>
-                <thead className="nameList__thead">
-                    <tr>
-                        <th>Name</th>
-                        <th>Title</th>
-                    </tr>
+                <thead className="nameList__head">
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th></th>
+                </tr>
                 </thead>
                 <tbody onClick={this.handleClick}>
                 {
                     this.props.people.map(function (person, index) {
                         return (
-                            <tr className="nameList__tr" key={index}>
+                            <tr className="nameList__row" key={index}>
                                 <td key={index + '_0'}>{person.name}</td>
                                 <td key={index + '_1'}>{person.title}</td>
+                                <td>
+                                    <div className="nameRowActionButtons">
+                                        <button className="nameRowActionButtons__edit">Edit</button>
+                                        <button className="nameRowActionButtons__delete">Delete</button>
+                                    </div>
+                                </td>
                             </tr>)
                     })
                 }
