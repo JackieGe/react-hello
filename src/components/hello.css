@@ -23,3 +23,15 @@
     color: #eee;
 }
 
+.menu__item button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.menu__item button:hover {
+    color: #fff;
+}
+

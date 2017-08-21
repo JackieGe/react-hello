@@ -17,6 +17,11 @@ class Hello extends React.Component {
                     <li className="menu__item">
                         Contact Us
                     </li>
+                    <li className="menu__item">
+                        <button>
+                            Search
+                        </button>
+                    </li>
                 </ul>
 
             </div>
