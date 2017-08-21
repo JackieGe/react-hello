@@ -16,11 +16,7 @@ let NameList = React.createClass({
         }
 
         if (row) {
-            if (!row.classList.contains('nameList__row--active')) {
-                row.classList.add('nameList__row--active');
-            } else {
-                row.classList.remove('nameList__row--active')
-            }
+            row.classList.toggle('nameList__row--active');
         }
     },
 
