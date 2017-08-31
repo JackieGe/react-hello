@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
     <div id="container">
     </div>
     <div id="nameList">
     </div>
 
+    <div id="counter"> </div>
+    <div id="counter2"> </div>
+    <button id="btn1"> Load </button>
+    <button id="btn2"> Destroy </button>
+    <script>
+        var counterWrap;
+        var btn = document.getElementById('btn1');
+        btn.onclick = function () {
+            var divCounter2 = document.getElementById('counter2');
+            counterWrap = new CounterWrap(divCounter2);
+            counterWrap.render();
+        }
+
+        var btn2 = document.getElementById('btn2');
+        btn2.onclick = function() {
+            if(counterWrap) {
+                counterWrap.destroy();
+            }
+        }
+    </script>
 </body>
+
 </html>
