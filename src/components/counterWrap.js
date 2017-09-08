@@ -6,10 +6,11 @@ import Counter from './counter.jsx';
     class CounterWrap {
         constructor(container) {
             this.container = container;
-            this.element = React.createElement(Counter, { count: 11 })
+            this.props = { count: 0 }
+            this.element = React.createElement(Counter, this.props)
             setInterval(() => {
-                
-                // this.element.state.count++;
+               this.props.count++;
+               this.element.props = this.props;
             }, 1000)
         }
 

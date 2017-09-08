@@ -12,6 +12,7 @@ class NameList extends React.Component {
         this.handleMouseEnter = this.handleMouseEnter.bind(this)
         this.selectAll = this.selectAll.bind(this)
         this.deselectAll = this.deselectAll.bind(this)
+        this.handleMouseEnterOnRow = this.handleMouseEnterOnRow.bind(this);
         this.state = { people: this.props.people }
     }
 
@@ -55,8 +56,52 @@ class NameList extends React.Component {
         })
     }
 
+    handleMouseEnterOnRow(evt) {
+        var currentTr = evt.currentTarget;
+        if (currentTr) {
+            if (currentTr.dataset && !currentTr.dataset.tooltip) {
+                var tooltip = document.createElement('div');
+                tooltip.classList.add('tooltip')
+                tooltip.id = currentTr.children[0].innerText;
+                tooltip.innerText = 'Hello World'
+                tooltip.style.display = 'none'
+                currentTr.dataset.tooltipId = tooltip.id;
+                document.body.appendChild(tooltip)
+            }
+
+            var tool = document.getElementById(currentTr.dataset.tooltipId);
+            if (tool) {
+                var clientX = evt.clientX;
+                var clientY = evt.clientY;
+                setTimeout(() => {
+                    tool.style.display = 'block'
+                    tool.style.left = clientX + 'px';
+                    tool.style.top = clientY + 'px';
+                    console.log('set position...')
+                }, 10)
+
+            }
+        }
+    }
+
+    handleMouseLeaveOnRow(evt) {
+        var currentTr = evt.currentTarget;
+        if (currentTr) {
+            if (currentTr.dataset && currentTr.dataset.tooltipId) {
+                var tool = document.getElementById(currentTr.dataset.tooltipId);
+                if (tool) {
+                    setTimeout(() => {
+                        tool.style.display = 'none'
+                    }, 10)
+                }
+            }
+        }
+    }
+
     render() {
         var handleMouseEnter = this.handleMouseEnter;
+        var handleMouseEnterOnRow = this.handleMouseEnterOnRow;
+        var handleMouseLeaveOnRow = this.handleMouseLeaveOnRow;
         var thead = (
             <thead className="nameList__head" style={{ width: "100%", marginTop: 1 }}>
                 <tr>
@@ -81,7 +126,7 @@ class NameList extends React.Component {
                         {
                             this.state.people.map(function (person, index) {
                                 return (
-                                    <tr className={person.isSelected ? "nameList__row nameList__row--active" : "nameList__row"} style={index > 0 ? { color: 'green', zIndex: calcZIndex(index), width: 380, overflow: 'hidden' } : {}} key={index}>
+                                    <tr className={person.isSelected ? "nameList__row nameList__row--active" : "nameList__row"} onMouseEnter={handleMouseEnterOnRow} onMouseLeave={handleMouseLeaveOnRow} style={index > 0 ? { color: 'green', zIndex: calcZIndex(index), width: 380, overflow: 'hidden' } : {}} key={index}>
                                         <td key={index + '_0'}>{person.name}</td>
                                         <td key={index + '_1'}>{person.title}</td>
                                         <td>
