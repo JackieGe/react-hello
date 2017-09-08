@@ -6,14 +6,19 @@ import Counter from './counter.jsx';
     class CounterWrap {
         constructor(container) {
             this.container = container;
+            this.element = React.createElement(Counter, { count: 11 })
+            setInterval(() => {
+                
+                // this.element.state.count++;
+            }, 1000)
         }
 
         render() {
             ReactDOM.render(
-                React.createElement(Counter),
+                // React.createElement(Counter),
+                this.element,
                 this.container
             )
-            ReactDOM.unmountComponentAtNode
         }
 
         destroy() {

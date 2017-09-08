@@ -33,6 +33,7 @@
 
 .nameRowActionButtons{
    text-align: center;
+   position: relative;
 }
 
 .nameRowActionButtons__edit,
@@ -43,10 +44,10 @@
     border-radius: 4px;
     outline: none;
     cursor: pointer;
+    position: relative;
 }
 
 .nameRowActionButtons__delete {
     color: red;
     font-weight: bold;
 }
-
