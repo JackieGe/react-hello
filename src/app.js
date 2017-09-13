@@ -19,7 +19,8 @@ let people = [
 ]
 
 ReactDOM.render(
-    <NameList people={people} />,
+    // <NameList people={people} />,
+    React.createElement(NameList, { people: people }),
     document.getElementById('nameList')
 )
 
