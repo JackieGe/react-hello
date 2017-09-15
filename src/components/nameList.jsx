@@ -13,19 +13,19 @@ class NameList extends React.Component {
         this.selectAll = this.selectAll.bind(this)
         this.deselectAll = this.deselectAll.bind(this)
         this.toggleRowSelect = this.toggleRowSelect.bind(this)
-        this.state = { selectedRowIndexes: {} };
+        this.state = { selectedRowIndexes: [] };
 
     }
 
     toggleRowSelect(idx) {
-        var selectedRowIndexes = Object.assign({}, this.state.selectedRowIndexes);
+        var selectedRowIndexes = this.state.selectedRowIndexes.slice(0);
         selectedRowIndexes[idx] = !selectedRowIndexes[idx];
         this.setState({ selectedRowIndexes: selectedRowIndexes });
     }
 
     selectAll() {
         var length = this.props.people.length;
-        var selectedRowIndexes = {};
+        var selectedRowIndexes = [];
         for (var i = 0; i < length; i++) {
             selectedRowIndexes[i] = true;
         }
@@ -36,7 +36,7 @@ class NameList extends React.Component {
 
     deselectAll() {
         var length = this.props.people.count;
-        var selectedRowIndexes = {};
+        var selectedRowIndexes = [];
         this.setState({
             selectedRowIndexes: selectedRowIndexes
         })
